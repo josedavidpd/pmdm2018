@@ -1,0 +1,5 @@
+package com.salesianostriana.campkilo.repository;
+
+public interface CampanaRepository {
+
+}

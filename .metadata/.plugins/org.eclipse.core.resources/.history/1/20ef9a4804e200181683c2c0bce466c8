@@ -1,0 +1,9 @@
+package com.salesianostriana.campkilo.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.salesianostriana.campkilo.model.Campana;
+
+public interface CampanaRepository extends JpaRepository<Campana, Long>{
+
+}

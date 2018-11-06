@@ -1,0 +1,32 @@
+package com.salesianostriana.campkilo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.salesianostriana.campkilo.model.Usuario;
+import com.salesianostriana.campkilo.repository.UsuarioRepository;
+
+@Service("userDetailsService")
+public class UsuarioService implements UserDetails {
+
+	@Autowired
+	public UsuarioRepository uRepository;
+	
+	public Usuario loadUserByUsername(String username) throws UsernameNotFoundException {
+		// Buscamos el usuario por su nombe de usuario
+		Usuario user = uRepository.findUserWithAuthorities(username);
+
+		if (user == null) {
+			// En caso de no localizarlo, lanzamos una excepción
+			throw new UsernameNotFoundException("User not found");
+
+		} 
+
+		// Devolvemos la instancia de UserDetails.
+		return user;
+
+	}
+
+}

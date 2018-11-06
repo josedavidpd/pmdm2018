@@ -1,0 +1,6 @@
+package com.salesianostriana.campkilo.service;
+
+@Service
+public class CampanaService {
+
+}

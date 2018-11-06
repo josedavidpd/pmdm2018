@@ -1,0 +1,33 @@
+package com.salesianostriana.campkilo;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import com.salesianostriana.campkilo.model.Authority;
+import com.salesianostriana.campkilo.model.Usuario;
+import com.salesianostriana.campkilo.service.AuthorityService;
+import com.salesianostriana.campkilo.service.UsuarioService;
+
+@SpringBootApplication
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+	@Bean
+	public CommandLineRunner insertInitialData(UsuarioService uService, AuthorityService aService) {
+		return args -> {
+			Usuario u1 = new Usuario("usuario@usuario.com", "usuario", "usuario", "2DAM", true);
+			Usuario u2 = new Usuario("admin@admin.com", "admin", "admin", "GENERAL", true);
+			uService.save(u1);
+			uService.save(u2);
+			Authority aUser1 = new Authority("ROLE_USER", u1);
+			Authority aUser2 = new Authority("ROLE_ADMIN", u2);
+			aService.save(aUser1);
+			aService.save(aUser2);
+		};
+	}
+}

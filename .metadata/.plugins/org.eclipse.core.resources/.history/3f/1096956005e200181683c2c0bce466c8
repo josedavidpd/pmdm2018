@@ -1,0 +1,5 @@
+package com.salesianostriana.campkilo.controller.rest;
+
+public class CampanaControllerRest {
+
+}

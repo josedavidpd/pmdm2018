@@ -1,0 +1,40 @@
+package com.salesianostriana.campkilo.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import org.springframework.security.core.GrantedAuthority;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@Entity
+public class Authority implements GrantedAuthority {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+
+	private String authorities;
+
+	@ManyToOne
+	private Usuario user;
+
+	public Authority(String authority, Usuario user) {
+		super();
+		this.authorities = authority;
+		this.user = user;
+	}
+
+	@Override
+	public String getAuthority() {
+		
+		return this.authorities;
+	}
+
+}
